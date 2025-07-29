@@ -34,7 +34,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
 @Composable
- @Composable
 fun HomeScreen(navController: androidx.navigation.NavController) {
     val color_background = Color(0XFFFFFAF3)
     val color_button = Color(0XFFFFECD2)
