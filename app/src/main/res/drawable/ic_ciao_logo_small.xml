@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- CIAO 로고를 적절한 크기로 축소 -->
+    <group
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:translateX="27"
+        android:translateY="27">
+        
+        <!-- CIAO 로고를 간단한 원형으로 표현 -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
+        
+        <!-- CIAO 텍스트를 간단하게 표현 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M30,45 L30,65 L40,65 L40,55 L50,65 L60,65 L50,55 L60,55 L60,45 L50,45 L40,60 L40,45 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M65,45 L65,65 L75,65 L75,50 L85,50 L85,45 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M90,45 L90,65 L100,65 L100,50 L110,50 L110,45 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M115,45 L115,65 L125,65 L125,55 L135,65 L145,65 L135,55 L145,55 L145,45 L135,45 L125,60 L125,45 Z" />
+        
+    </group>
+</vector> 
