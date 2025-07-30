@@ -4,8 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -28,6 +30,8 @@ fun SecondScreen(navController: androidx.navigation.NavController) {
     val color_logo = Color(0XFF73AE19)
     val color_buttontext = Color(0XFF9E6C3A)
     val color_blue = Color(0XFF2D87E2)
+    val color_red = Color(0XFFFF4444)
+    val color_blue_button = Color(0XFF2196F3)
 
     Column (
         modifier = Modifier
@@ -37,37 +41,44 @@ fun SecondScreen(navController: androidx.navigation.NavController) {
         verticalArrangement = Arrangement.Center,
 
         ) {
-        Column (
-            modifier = Modifier.padding(vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Button(onClick = {
                 navController.navigate("photo")
             },
-                colors = ButtonDefaults.buttonColors(containerColor = color_button),
-                modifier = Modifier.width(360.dp).height(50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = color_red),
+                modifier = Modifier
+                    .width(160.dp)
+                    .height(240.dp),
                 contentPadding = PaddingValues(10.dp),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(12.dp)
             ) {
                 Text("대여하기",
-                    color = color_buttontext,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                 )
             }
-            Spacer(Modifier.height(100.dp))
+            
             Button(onClick = {
                 navController.navigate("photo")
             },
-                colors = ButtonDefaults.buttonColors(containerColor = color_button),
-                modifier = Modifier.width(360.dp).height(50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = color_blue_button),
+                modifier = Modifier
+                    .width(160.dp)
+                    .height(240.dp),
                 contentPadding = PaddingValues(10.dp),
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(12.dp)
             ) {
                 Text("반납하기",
-                    color = color_buttontext,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                 )
             }
         }

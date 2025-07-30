@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.Preview
+import com.intel.ciao.ui.theme.CiaoTheme
 
 @Composable
 fun HomeScreen(navController: androidx.navigation.NavController) {
@@ -133,3 +135,4 @@ fun AnimatedTextItem(text: String, delayMillis: Int, fontsize: Int?, color: Colo
         )
     }
 }
+

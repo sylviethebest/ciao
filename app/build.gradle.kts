@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.intel.ciao"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.intel.ciao"
-        minSdk = 30
-        targetSdk = 35
+        minSdk = 26
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
