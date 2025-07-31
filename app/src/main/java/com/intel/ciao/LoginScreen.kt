@@ -15,8 +15,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.material.icons.Icons
+//import androidx.compose.material.icons.filled.Visibility
+//import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
@@ -30,10 +35,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.intel.ciao.ui.theme.CiaoTheme
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+
 
 @Composable
 fun LoginScreen(navController: androidx.navigation.NavController) {
@@ -96,18 +107,7 @@ fun LoginScreen(navController: androidx.navigation.NavController) {
                     modifier = Modifier.padding(16.dp).
                     width(70.dp),
                 )
-                TextField(
-                    value = getpassward,
-                    onValueChange = { getpassward = it },
-                    singleLine = true,
-                    modifier = Modifier.width(250.dp)
-                        .border(width = 1.dp, color = color_buttontext),
-
-                    colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = Color.White,
-                        focusedContainerColor = Color.White
-                    )
-                )
+                PasswordTextField(getpassward, { getpassward = it })
             }
 
             Spacer(Modifier.height(20.dp))
@@ -137,4 +137,25 @@ fun LoginScreen(navController: androidx.navigation.NavController) {
             )
         }
     }
+}
+
+@Composable
+fun PasswordTextField(
+    password: String,
+    onPasswordChange: (String) -> Unit,
+) {
+    val isPasswordVisible = remember { mutableStateOf(false) }
+
+    TextField(
+        value = password,
+        onValueChange = onPasswordChange,
+        visualTransformation = if (isPasswordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+        singleLine = true,
+        modifier = Modifier.width(250.dp)
+            .border(width = 1.dp, color = Color(0XFF9E6C3A)),
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color.White,
+            focusedContainerColor = Color.White
+        )
+    )
 }

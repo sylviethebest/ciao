@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.Spacer
 
 @Composable
 fun SecondScreen(navController: androidx.navigation.NavController) {
@@ -33,54 +34,48 @@ fun SecondScreen(navController: androidx.navigation.NavController) {
     val color_red = Color(0XFFFF4444)
     val color_blue_button = Color(0XFF2196F3)
 
-    Column (
+    Row (
         modifier = Modifier
             .fillMaxSize()
-            .padding(30.dp)
+            .padding(vertical = 16.dp)
             .background(color_background),
-        verticalArrangement = Arrangement.Center,
-
-        ) {
-        Row (
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Button(onClick = {
+            navController.navigate("video_submit")
+        },
+            colors = ButtonDefaults.buttonColors(containerColor = color_red),
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
+                .width(140.dp)
+                .height(240.dp),
+            contentPadding = PaddingValues(10.dp),
+            shape = RoundedCornerShape(12.dp)
         ) {
-            Button(onClick = {
-                navController.navigate("photo")
-            },
-                colors = ButtonDefaults.buttonColors(containerColor = color_red),
-                modifier = Modifier
-                    .width(160.dp)
-                    .height(240.dp),
-                contentPadding = PaddingValues(10.dp),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Text("대여하기",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                )
-            }
-            
-            Button(onClick = {
-                navController.navigate("photo")
-            },
-                colors = ButtonDefaults.buttonColors(containerColor = color_blue_button),
-                modifier = Modifier
-                    .width(160.dp)
-                    .height(240.dp),
-                contentPadding = PaddingValues(10.dp),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Text("반납하기",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                )
-            }
+            Text("대여하기",
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+            )
+        }
+
+        Spacer(Modifier.width(20.dp))
+
+        Button(onClick = {
+            navController.navigate("video_return")
+        },
+            colors = ButtonDefaults.buttonColors(containerColor = color_blue_button),
+            modifier = Modifier
+                .width(140.dp)
+                .height(240.dp),
+            contentPadding = PaddingValues(10.dp),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Text("반납하기",
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+            )
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.intel.ciao
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,49 +35,48 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.intel.ciao.ui.theme.CiaoTheme
 import com.intel.ciao.MyApp
 import kotlinx.coroutines.delay
+import androidx.navigation.NavController
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        if (!hasRequiredPermissions()) {
+            ActivityCompat.requestPermissions(
+                this, CAMERAX_PERMISSIONS, 0
+            )
+        }
+
         setContent {
             CiaoTheme {
-                SplashScreen()
+                MainScreen()
             }
         }
     }
-}
 
-@Composable
-fun SplashScreen() {
-    var showMainScreen by remember { mutableStateOf(false) }
-    
-    LaunchedEffect(Unit) {
-        delay(2000) // 2초 동안 스플래시 화면 표시
-        showMainScreen = true
-    }
-    
-    if (showMainScreen) {
-        MainScreen()
-    } else {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ciaologo),
-                contentDescription = "CIAO Logo",
-                modifier = Modifier.size(200.dp)
-            )
+    private fun hasRequiredPermissions(): Boolean {
+        return CAMERAX_PERMISSIONS.all {
+            ContextCompat.checkSelfPermission(
+                this,
+                it
+            ) == PackageManager.PERMISSION_GRANTED
         }
+    }
+
+    companion object {
+        private val CAMERAX_PERMISSIONS = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO
+        )
     }
 }
 
@@ -89,3 +90,10 @@ fun MainScreen() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun MainScreenPreview() {
+    CiaoTheme {
+        MainScreen()
+    }
+}
